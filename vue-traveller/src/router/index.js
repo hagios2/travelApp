@@ -13,16 +13,22 @@ const routes = [
   {
     path: "/destination/:id/:slug",
     name: "destination.show",
-    component: () => import(/* webpackChunkName: "destination details" */ "@/views/DestinationShow.vue"),
-    props: route => ({...route.params, id: parseInt(route.params.id)}),
+    component: () =>
+      import(
+        /* webpackChunkName: "destination details" */ "@/views/DestinationShow.vue"
+      ),
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
     children: [
       {
         path: ":experienceSlug",
         name: "experience.show",
-        component: () => import(/* webpackChunkName: "experience details" */ "@/views/ExperienceShow.vue"),
-        props: route => ({...route.params, id: parseInt(route.params.id)}),
-      }
-    ]
+        component: () =>
+          import(
+            /* webpackChunkName: "experience details" */ "@/views/ExperienceShow.vue"
+          ),
+        props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+      },
+    ],
   },
 ];
 

@@ -1,54 +1,53 @@
 <template>
-    <div>
-        <section v-if="destination" class="destination">
-            <h2>{{destination.name}} </h2>
+  <div>
+    <section v-if="destination" class="destination">
+      <h2>{{ destination.name }}</h2>
 
-            <div class="destination-details">
-                <img :src="`/images/${destination.image}`" :alt="destination.name">
-            </div>
+      <div class="destination-details">
+        <img :src="`/images/${destination.image}`" :alt="destination.name" />
+      </div>
 
-            <p>{{destination.description}} </p>
-        </section>
+      <p>{{ destination.description }}</p>
+    </section>
 
-        <section class="experiences">
-            <h2> Top Experiences in {{ destination.name }} </h2>
+    <section class="experiences">
+      <h2>Top Experiences in {{ destination.name }}</h2>
 
-            <div class="cards">
-                <router-link 
-                    v-for="experience in destination.experiences"
-                    
-                    :key="experience.slug"
-                    
-                    :to="{name: 'experience.show', params: {experienceSlug: experience.slug}}"
-                >
-                    <ExperienceCard 
-                        
-                        :experience="experience"
-                    />
-                </router-link>
+      <div class="cards">
+        <router-link
+          v-for="experience in destination.experiences"
+          :key="experience.slug"
+          :to="{
+            name: 'experience.show',
+            params: { experienceSlug: experience.slug },
+          }"
+        >
+          <ExperienceCard :experience="experience" />
+        </router-link>
 
-                <router-view />
-            </div>
-        </section>
-    </div>
+        <router-view />
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
+import sourceData from "@/data.json";
 
-import sourceData from "@/data.json"
-
-import ExperienceCard from '@/components/ExperienceCard.vue'
+import ExperienceCard from "@/components/ExperienceCard.vue";
 
 export default {
-    components: { ExperienceCard },
-    props: {
-        id: {type: Number, required: true}
-    },
+  components: { ExperienceCard },
+  props: {
+    id: { type: Number, required: true },
+  },
 
-    computed: {
-        destination () {
-            return sourceData.destinations.find(destination => destination.id === this.id)
-        }
+  computed: {
+    destination() {
+      return sourceData.destinations.find(
+        (destination) => destination.id === this.id
+      );
     },
-}
+  },
+};
 </script>

@@ -4,12 +4,12 @@
 
     <div class="destinations">
       <router-link
-      :key="destination.id"
-      v-for="destination in destinations"
-      :to="{name: 'destination.show', params: {id: destination.id}}"
+        :key="destination.id"
+        v-for="destination in destinations"
+        :to="{ name: 'destination.show', params: { id: destination.id } }"
       >
-      <h2>{{ destination.name }}</h2>
-      <img :src="`images/${destination.image}`" :alt="destination.name">
+        <h2>{{ destination.name }}</h2>
+        <img :src="`images/${destination.image}`" :alt="destination.name" />
       </router-link>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       destinations: sourceData.destinations,
-    }
+    };
   },
 };
 </script>
