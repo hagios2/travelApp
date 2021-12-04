@@ -30,6 +30,11 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/components/NotFound')
+  }
 ];
 
 const router = new VueRouter({
